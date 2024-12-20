@@ -17,8 +17,8 @@ gmsl <- gmsl %>%
   )
 
 # Read the text file
-filename <- 'GMSL_TPJAOS_5.1_199209_202307.txt'
-startRow <- 51
+filename <- 'GMSL_TPJAOS_5.1_1992_2024.txt'
+startRow <- 53
 
 gsat <- read_fwf(
   filename,
@@ -43,12 +43,12 @@ ggplot() +
   geom_line(data = gsat, aes(x = alMeanSeaLe, y = VarName9 - soff + toff), color = "red", linewidth = 1.5) +
   geom_line(data = gmsl, aes(x = VarName1, y = ObservedGMSLmean), color = "blue", linewidth = 1.5) +
   geom_ribbon(data = gmsl, aes(x = VarName1, ymin = ObservedGMSLlower, ymax = ObservedGMSLupper), fill = "blue", alpha = 0.25) +
-  scale_x_continuous(name = " ", limits = c(1900, 2025)) +
+  scale_x_continuous(name = " ", limits = c(1900, 2025), breaks = c(1900, 1920, 1940, 1960, 1980, 2000, 2020)) +
   scale_y_continuous(name = expression(paste("Global mean sea level (mm)")), limits = c(-200, 100)) +
 #  theme_minimal() +
   theme(text = element_text(size = 14)) +
   annotate("text", label = "Baseline Period 1995-2014", x = 2010, y = -180,
-           color = "black", size = 3)
+           color = "black", size = 4)
 
 
 # Save the plot
